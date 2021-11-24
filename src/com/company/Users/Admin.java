@@ -1,7 +1,6 @@
 package com.company.Users;
 
 public class Admin {
-    public String getPassword() {
-        return null;
-    }
+    private final String username = "admin";
+    private String password;
 }

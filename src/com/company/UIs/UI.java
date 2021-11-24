@@ -4,6 +4,7 @@ import com.company.Security.Authentication;
 import com.company.Security.Validation;
 import com.company.Users.Customer;
 import com.company.Users.Driver;
+import com.company.Users.State;
 import com.company.Utils.Database;
 
 import java.util.Scanner;
@@ -143,7 +144,7 @@ public class UI {
 
         switch (profileType) {
             case 1 -> {
-                Customer customer = new Customer(username, phoneNumber, email, password);
+                Customer customer = new Customer(username, phoneNumber, email, password, State.ACTIVE);
                 Database.addUser(username, customer, "Customer");
                 new CustomerUI(username, customer);
             }
@@ -166,7 +167,7 @@ public class UI {
                     drivingLicense = input.nextLine();
                 }
 
-                Driver driver = new Driver(username, phoneNumber, email, nationalID, drivingLicense, password);
+                Driver driver = new Driver(username, phoneNumber, email, nationalID, drivingLicense, password, State.INACTIVE);
                 Database.addUser(username, driver, "Driver");
                 new DriverUI(username, driver);
             }
@@ -201,9 +202,11 @@ public class UI {
      */
     private int getProfileType() {
         Scanner input = new Scanner(System.in);
-        System.out.println("\nChoose your profile\n" +
-                "1. Customer.\n" +
-                "2. Driver.");
+        System.out.println("""
+
+                Choose your profile
+                1. Customer.
+                2. Driver.""");
         System.out.print("\nChoice (1 - 2): ");
         int profileType = input.nextInt();
         while (profileType < 1 || profileType > 2) {
