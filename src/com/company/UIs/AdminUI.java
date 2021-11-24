@@ -1,7 +1,11 @@
 package com.company.UIs;
 
+import com.company.Users.Admin;
+
 public class AdminUI extends UI{
-    public AdminUI() {
+    Admin admin;
+    public AdminUI(Admin admin) {
+        this.admin = admin;
         System.out.println("Welcome Administrator.");
         menu();
     }

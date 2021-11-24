@@ -2,6 +2,7 @@ package com.company.UIs;
 
 import com.company.Security.Authentication;
 import com.company.Security.Validation;
+import com.company.Users.Admin;
 import com.company.Users.Customer;
 import com.company.Users.Driver;
 import com.company.Users.State;
@@ -26,14 +27,14 @@ public class UI {
     /**
      * Show a User options to choose from.
      */
-    public void mainMenu() {
+    private void mainMenu() {
         Scanner input = new Scanner(System.in);
 
-        System.out.println("================ TransCom ===============\n\n");
+        System.out.println("================ TransCom ===============");
         System.out.println("1. SignUp.");
         System.out.println("2. LogIn.");
         System.out.println("3. LogIn as Admin.");
-        System.out.println("4. Exit.");
+        System.out.print("4. Exit.");
 
         System.out.print("\nChoice (1 - 4): ");
 
@@ -191,8 +192,8 @@ public class UI {
             System.out.print("Password: ");
             password = input.nextLine();
         }
-
-        new AdminUI();
+        Admin admin = new Admin(password);
+        new AdminUI(admin);
     }
 
     /**
@@ -202,11 +203,8 @@ public class UI {
      */
     private int getProfileType() {
         Scanner input = new Scanner(System.in);
-        System.out.println("""
-
-                Choose your profile
-                1. Customer.
-                2. Driver.""");
+        System.out.println("Choose your profile");
+        System.out.print("1. Customer." + "\n2. Driver.\n");
         System.out.print("\nChoice (1 - 2): ");
         int profileType = input.nextInt();
         while (profileType < 1 || profileType > 2) {
@@ -223,7 +221,7 @@ public class UI {
      * @return menu option
      * @param max max choice
      */
-    int getChoice(int max) {
+    static int getChoice(int max) {
         Scanner input = new Scanner(System.in);
         System.out.print("\nChoice (1 - " + max + " ): ");
         int choice = input.nextInt();
