@@ -23,4 +23,5 @@ public class Driver extends User {
     public String getDrivingLicense() {
         return drivingLicense;
     }
+
 }
